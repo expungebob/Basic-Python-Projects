@@ -14,13 +14,12 @@ class ParentWindow(Frame):
         self.master.config(bg='lightgray')
 
         self.varInputFile = StringVar()
-        self.varInputBtm = StringVar()
 
         self.lblFile = Label(self.master, text='File: ', font=("Helvetica", 16), fg='black', bg='lightgray')
         self.lblFile.grid(row=0, column=0, padx=(30, 0), pady=(30, 0))
 
-        self.txtInputTop = Entry(self.master,text = self.varInputFile, font=("Helvetica", 16), fg ='black', bg= 'white' )
-        self.txtInputTop.grid(row =0 ,column = 1, padx =(30,0), pady=(50,0), columnspan=6)
+        self.txtInputTop = Entry(self.master,text = self.varInputFile, font=("Helvetica", 12), fg ='black', bg= 'white' )
+        self.txtInputTop.grid(row =0 ,column = 1, padx =(30,0), pady=(50,0), columnspan=6 )
 
         self.btnCheckFiles = Button(self.master, text = "Browse Files...", width= 13, height = 2, command = self.Browse)
         self.btnCheckFiles.grid(row =2 ,column = 0, padx =(20,0), pady=(10,0), sticky= S+W)
@@ -31,16 +30,10 @@ class ParentWindow(Frame):
     def close(self):
         self.master.destroy()
 
-    root = Tk()
-    root.withdraw()
-
-    def Browse (self, text):
-        self.text = Tk.text(self)
+    def Browse (self):
         dir= filedialog.askdirectory()
-        file = ''
-        filePath= os.path.join(dir, file)
-        self.text.insert(END, filePath)
-        print(filePath)
+        self.varInputFile.set(dir)
+        print(dir)
 
 if __name__ == "__main__":
     root = Tk()
